@@ -8,7 +8,7 @@ public:
     int reverse(int x) {
         long long rst=0;
         if(x<INT_MIN||x>INT_MAX)return 0;
-        cout<<INT_MAX<<endl<<INT_MIN<<endl;
+        //cout<<INT_MAX<<endl<<INT_MIN<<endl;
         if(x>0){
             while(x){
                 rst*=10;
