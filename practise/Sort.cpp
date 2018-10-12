@@ -10,6 +10,34 @@ void swap(int *a, int i, int j) {
     a[j] = t;
 }
 
+/*******************计数排序******************/
+void Counting(int *a, int n) {
+    //稳定的线性复杂度排序算法,空间换时间
+    //第一步确定数组值的范围[0,max]
+    if (n < 0)return;
+    int max = a[0];
+    int i, j;
+    for (i = 1; i < n; ++i) {
+        if (a[i] > max)max = a[i];
+    }
+    //第二步声明查找数组并初始化为0
+    int table[max + 1];
+    for (i = 0; i <= max; ++i) {
+        table[i] = 0;
+    }
+    //排序
+    for (i = 0; i < n; ++i) {
+        table[a[i]] += 1;
+    }
+    //打印排序结果
+    for (i = 0; i <= max; ++i) {
+        for (j = 0; j < table[i]; ++j) {
+            printf("%d", i);
+        }
+    }
+}
+
+
 /*******************冒泡排序******************/
 void Bubble(int *a, int n) {//冒泡排序
     int i, j;
@@ -194,27 +222,36 @@ void Show(int *a, int n)// 打印结果
     printf("\n");
 }
 
-
-int main() {
-    int n;
-    int a[n];
-    int i, j;
-    scanf("%d", &n);
-    for (i = 0; i < n; i++) {
-        scanf("%d", &a[i]);// 0 2 3 1 4 6 5 8 7 9
-    }
-//    Bubble(a, n);
-//    Bubble2(a, n);
-//    Select(a, n);
-//    Insert(a, n);
-
-//    int tmp[n];
-//    MergeSort(a,0,n-1,tmp);
-
-//    Quick(a, 0, n - 1);
-//    Quick2(a, 0, n - 1);
-
-    HeapSort(a, n);
-    Show(a, n);
-    return 0;
-}
+//int main() {
+//    int i;
+//    int a[5];
+//    for (i = 0; i < 5; i++) {
+//        scanf("%d", &a[i]);// 0 2 3 1 4 6 5 8 7 9
+//    }
+//    Counting(a, 5);
+//    return 0;
+//}
+//
+//int main() {
+//    int n;
+//    int a[n];
+//    int i, j;
+//    scanf("%d", &n);
+//    for (i = 0; i < n; i++) {
+//        scanf("%d", &a[i]);// 0 2 3 1 4 6 5 8 7 9
+//    }
+////    Bubble(a, n);
+////    Bubble2(a, n);
+////    Select(a, n);
+////    Insert(a, n);
+//
+////    int tmp[n];
+////    MergeSort(a,0,n-1,tmp);
+//
+////    Quick(a, 0, n - 1);
+////    Quick2(a, 0, n - 1);
+//
+////    HeapSort(a, n);
+//    Show(a, n);
+//    return 0;
+//}
