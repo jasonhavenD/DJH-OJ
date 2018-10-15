@@ -200,37 +200,91 @@ void bin2Ten(char *s) {
 }
 
 
-int main() {
-    int x;
-
-//    if (isPrime(x)) {
-//        printf("yes");
-//    } else {
-//        printf("no");
-//    }
-
-//    printf("%d", miniCommonMultiple(100, 250));//50
-
-//    simplyFactor(15, 45);//1/3
-
-//    printf("%d", reverseNumber1(1234));
-//    printf("%d", reverseNumber2(1234));
-
-//    printf("%d",isPalin(12321));
-//    printf("%d",isPalin(123221));
-
-//    printf("%d", isNarcissistic(153));
-//    printf("%d", isNarcissistic(370));
-
-//    isFull(6);
-//    isFull(10);
-//    isFull(28);
-
-//    isShouXing(625);
-
-//    bin2Ten("100");//4
-//    ten2Bin(10);//1010
-
-
-    return 0;
+/*******************十进制转换十六进制以内的任意进制******************/
+const char vals[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E',
+                       'F'};//对于十六进制来说的取值值域,同时也是十六进制转其他进制的定义域
+/*
+ *
+也可以使用这种动态转换数字和字符的方法，这种不方便，推荐存储查表的方法
+char val;
+for (int i = 0; i < 16; ++i) {
+    if (i < 10)
+        val = (char) (i + '0');
+    else
+        val = (char) (i - 10 + 'A');
+    printf("%c", val);//0123456789ABCDEF
 }
+ * */
+
+void ten2Sixteen(int x, int base) {
+    int ans[1000] = {0};//存储结果，起到一个栈的作用
+    if (x < 0)x = -x;
+    int cnt = 0;
+    while (x > 0) {
+        int t = x % base;//获取余数
+        x = x / base;//阶数下降
+        ans[cnt++] = t;
+    }
+    for (int i = cnt - 1; i >= 0; i--) {
+        int val = ans[i];//余数
+        printf("%c", vals[val]);//转换成合适的进制下对应的数字
+    }
+}
+
+/*******************十六进制以内的任意进制转换******************/
+int trans2ten(int x, int base) {
+    int ans = 0;
+    int len = 0;
+    while (x > 0) {
+        int t = x % 10;//取得个位
+        x = x / 10;
+        int p = pow(base, len++);//幂
+        ans += t * p;
+    }
+    return ans;
+}
+
+void any2any(int x, int base1, int base2) {
+    x = trans2ten(x, base1);//计算出十进制数
+    ten2Sixteen(x, base2);//把十进制数字转换为指定进制
+}
+
+//int main() {
+//    ten2Sixteen(17, 16);//11
+//    ten2Sixteen(31, 16);//1F
+//    ten2Sixteen(30, 16);//1E
+
+//    any2any(31, 10, 16);//1F
+//    any2any(15, 10, 16);//F
+//    any2any(1111, 2, 16);//F
+////    if (isPrime(x)) {
+////        printf("yes");
+////    } else {
+////        printf("no");
+////    }
+//
+////    printf("%d", miniCommonMultiple(100, 250));//50
+//
+////    simplyFactor(15, 45);//1/3
+//
+////    printf("%d", reverseNumber1(1234));
+////    printf("%d", reverseNumber2(1234));
+//
+////    printf("%d",isPalin(12321));
+////    printf("%d",isPalin(123221));
+//
+////    printf("%d", isNarcissistic(153));
+////    printf("%d", isNarcissistic(370));
+//
+////    isFull(6);
+////    isFull(10);
+////    isFull(28);
+//
+////    isShouXing(625);
+//
+////    bin2Ten("100");//4
+////    ten2Bin(10);//1010
+//
+//
+//    return 0;
+//}
