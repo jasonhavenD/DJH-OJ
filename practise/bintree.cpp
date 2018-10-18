@@ -38,7 +38,7 @@ void LevelTransverse(BTree root) {
     if (root == NULL)return;
     queue.push(root);
     while (!queue.empty()) {
-        root = queue.back();
+        root = queue.front();
         Visit(root);
         queue.pop();
         if (root->lc != NULL)queue.push(root->lc);//左孩子
