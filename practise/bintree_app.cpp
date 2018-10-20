@@ -14,11 +14,11 @@ typedef struct node {
     struct node *lc, *rc;
 } BNode, *BTree;
 
-void Visit(BTree node) {
-    if (node != NULL) {
-        printf("%d ", node->data);
-    }
-}
+//void Visit(BTree node) {
+//    if (node != NULL) {
+//        printf("%d ", node->data);
+//    }
+//}
 
 /*******************节点个数******************/
 int countNumber(BTree root) {
@@ -139,31 +139,3 @@ int IsFullTree(BTree root) {
     return True;
 }
 
-
-/*******************中序+先序还原二叉树******************/
-int ReBuildBTree1(BTree root) {
-
-}
-
-/*******************中序+后序还原二叉树******************/
-int ReBuildBTree2(BTree root) {
-
-}
-
-
-/*******************最远节点的距离******************/
-int max(int a, int b, int c) {
-    int t = a > b ? a : b;
-    return t > c ? t : c;
-}
-
-/*递归计算以根节点为轴，左右子树最大深度之和就等于最远距离*/
-int MaxDistance(BTree root) {
-
-}
-
-
-/*******************最近公共祖先******************/
-int NearestCommonFather(BTree root) {
-
-}
