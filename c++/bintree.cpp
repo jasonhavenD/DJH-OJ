@@ -143,10 +143,10 @@ void PostorderTraverse(BTree root) {//后序遍历
     }
     //上述执行完毕，结果按照  “根左右” 的顺序入栈到 output
     //循环出栈 output 即可实现 后序遍历
-    while (!output.empty()) {
-        root = sk.top();
+     while (!output.empty()) {
+        root = output.top();
         Visit(root);
-        sk.pop();
+        output.pop();
     }
 }
 
