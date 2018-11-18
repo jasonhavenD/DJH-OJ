@@ -9,7 +9,6 @@
 
 using namespace std;
 
-#define True 1
 typedef char T;
 
 typedef struct node {
@@ -164,6 +163,8 @@ BTree CreateTree() {
     return p;//返回根节点
 }
 
+
+/*
 int main() {
     BTree root = CreateTree();//ABC##DE#G##F###
     printf("层序遍历\n");
@@ -185,3 +186,4 @@ int main() {
     return 0;
 }
 
+*/
